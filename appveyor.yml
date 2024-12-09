@@ -11,6 +11,7 @@ branches:
 # Install dependencies
 install:
   # Update the package list and install necessary dependencies
+  - pip install python-libtorrent
   - pip install torrentp   # If torrentp is available in APT
   # Alternatively, if torrentp is a Python package, use pip:
   # - pip3 install torrentp
