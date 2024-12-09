@@ -3,13 +3,8 @@ image: macos-sonoma
 
 environment:
   PYTHON_VERSION: "3.9"  # You can specify the Python version here
-
-before_install:
-  # Install Python (if it's not already pre-installed on macOS image)
-  - brew install python@3.9
   
   # Ensure pip is up-to-date
-  - python3 -m ensurepip --upgrade
   - python3 -m pip install --upgrade pip
   
   # Install torrentp library
@@ -17,6 +12,7 @@ before_install:
 
 install:
   # Any additional dependencies you may need
+  - brew install python@3.9
   - brew install libtorrent
 
 script:
