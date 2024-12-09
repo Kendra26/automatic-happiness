@@ -12,8 +12,8 @@ environment:
 
 # Install dependencies
 install:
-  - sudo apt update
-  - sudo apt install -y qbittorrent-nox  # Install qBittorrent-nox
+  -  apt update
+  -  apt install -y qbittorrent-nox  # Install qBittorrent-nox
 
 # Example: Start qBittorrent-nox in the background to download the magnet link
 before_build:
