@@ -2,12 +2,10 @@ version: 1.0.{build}
 
 image: macos-sonoma  # Use macOS Sonoma image (or the latest available)
 
-# Environment configuration (Optional)
 environment:
   PYTHON_VERSION: "3.11"  # You can specify the version you prefer
 
 install:
-  # Install Homebrew if it is not already installed
   - brew update
   - brew install python  # Ensure Python is installed
   - python3 -m venv venv  # Create a Python virtual environment
@@ -19,15 +17,17 @@ before_build:
   # Optional: Any pre-build setup (not necessarily needed for basic use)
   - source venv/bin/activate  # Ensure the virtual environment is activated
 
+# Corrected build section
 build:
-  # Run your Python script that uses torrentp (replace with your actual script)
-  - source venv/bin/activate  # Ensure the virtual environment is activated
-  - python your_torrent_script.py  # Run your torrent script
+  commands:
+    - source venv/bin/activate  # Ensure the virtual environment is activated
+    - python your_torrent_script.py  # Run your torrent script
 
 # Optional: Running tests (if you have them defined)
 test:
-  - source venv/bin/activate  # Ensure virtualenv is active
-  - pytest tests/  # Example: Running tests using pytest
+  commands:
+    - source venv/bin/activate  # Ensure virtualenv is active
+    - pytest tests/  # Example: Running tests using pytest
 
 # Optional: Upload artifacts if needed (such as logs or output)
 artifacts:
