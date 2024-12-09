@@ -1,15 +1,17 @@
 version: 1.0.{build}
 image: macos-sonoma  # Use macOS Sonoma image (or the latest available)
 
-after_build:
-  install:
-  - cmd: brew update
-  - cmd: brew install python  # Ensure Python is installed
-  - cmd: python3 -m venv venv  # Create a Python virtual environment
-  - cmd: pip install --upgrade pip  # Upgrade pip
-  - cmd: pip install torrentp  # Install the 'torrentp' library (ensure it’s in the requirements)
+install:
+  - brew update
+  - brew install python  # Ensure Python is installed
+  - python3 -m venv venv  # Create a Python virtual environment
+  - source venv/bin/activate  # Activate the virtual environment
+  - pip install --upgrade pip  # Upgrade pip
+  - pip install torrentp  # Install the 'torrentp' library
 
-# Optional: Upload artifacts if needed (such as logs or output)
+script:
+  - torrentp download "path_to_your_torrent_file.torrent"  # Download the torrent
+
 artifacts:
-  - path: build_output/
+  - path: build_output/  # Specify path to store output or logs
     name: Build Artifacts
