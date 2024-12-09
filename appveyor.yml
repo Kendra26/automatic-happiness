@@ -13,7 +13,5 @@ install:
   - sudo apt-get install -y torrentp  # If torrentp is available via APT
   # Or you can install via pip (if it's a Python package)
   # - sudo pip3 install torrentp
-
-script:
   # Run torrentp to download the file
-  - torrentp <your-torrent-file>.torrent  # Replace with your torrent file
+  - cmd: torrentp <your-torrent-file>.torrent  # Replace with your torrent file
