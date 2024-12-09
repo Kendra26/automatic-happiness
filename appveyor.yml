@@ -1,7 +1,7 @@
 version: 1.0.{build}
 
 # Set Ubuntu as the image for the pipeline
-image: ubuntu-latest  # Or another available Ubuntu version
+image: Visual Studio 2019  # Or another available Ubuntu version
 
 # Define which branches to build
 branches:
