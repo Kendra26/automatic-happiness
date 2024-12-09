@@ -2,16 +2,12 @@ version: 1.0.{build}
 
 image: macos-sonoma  # Use macOS Sonoma image (or the latest available)
 
-environment:
-  PYTHON_VERSION: "3.11"  # You can specify the version you prefer
-
 install:
-  - brew update
-  - brew install python  # Ensure Python is installed
-  - python3 -m venv venv  # Create a Python virtual environment
-  - source venv/bin/activate  # Activate the virtual environment
-  - pip install --upgrade pip  # Upgrade pip
-  - pip install torrentp  # Install the 'torrentp' library (ensure it’s in the requirements)
+  - cmd: brew update
+  - cmd: brew install python  # Ensure Python is installed
+  - cmd: python3 -m venv venv  # Create a Python virtual environment
+  - cmd: pip install --upgrade pip  # Upgrade pip
+  - cmd: pip install torrentp  # Install the 'torrentp' library (ensure it’s in the requirements)
 
 before_build:
   # Optional: Any pre-build setup (not necessarily needed for basic use)
@@ -21,7 +17,6 @@ before_build:
 build:
   commands:
     - source venv/bin/activate  # Ensure the virtual environment is activated
-    - python your_torrent_script.py  # Run your torrent script
 
 # Optional: Running tests (if you have them defined)
 test:
