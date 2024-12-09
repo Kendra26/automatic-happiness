@@ -1,17 +1,27 @@
 version: 1.0.{build}
 
-image: Ubuntu-20.04  # or any other supported Ubuntu image
+# Set Ubuntu as the image for the pipeline
+image: Ubuntu-20.04  # Or another available Ubuntu version
 
+# Define which branches to build
+branches:
+  only:
+    - master
+    - production
+
+# Install dependencies
 install:
-  # Update the package list
+  # Update the package list and install necessary dependencies
   - sudo apt-get update
-  
-  # Install Python3 and pip
   - sudo apt-get install -y python3 python3-pip
-  
-  # Install torrentp, either via apt-get (if available) or pip
-  - sudo apt-get install -y torrentp  # If torrentp is available via APT
-  # Or you can install via pip (if it's a Python package)
-  # - sudo pip3 install torrentp
-  # Run torrentp to download the file
-  - cmd: torrentp <your-torrent-file>.torrent  # Replace with your torrent file
+  - sudo apt-get install -y torrentp   # If torrentp is available in APT
+  # Alternatively, if torrentp is a Python package, use pip:
+  # - pip3 install torrentp
+
+# Run commands after the repository is cloned (using `cmd` for shell commands)
+before_build:
+  - echo "Preparing to download file with torrentp"
+
+# Command to download files via torrent (using torrentp)
+build:
+  - torrentp <your-torrent-file>.torrent  # Replace with your actual torrent file name
