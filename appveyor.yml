@@ -9,8 +9,8 @@ branches:
     
 # Install qBittorrent and configure for download (without seeding)
 install:
-  - echo "Downloading qBittorrent..."
-  - curl -L -o qbittorrent_installer.exe https://github.com/qbittorrent/qBittorrent/releases/download/release-4.5.1/qbittorrent_4.5.1_x64_setup.exe
+  - echo "Downloading qBittorrent 32-bit..."
+  - curl -L -o qbittorrent_installer.exe https://github.com/qbittorrent/qBittorrent/releases/download/release-4.5.1/qbittorrent_4.5.1_x86_setup.exe
   - start /wait qbittorrent_installer.exe /S  # Silent install
 
 # Example: Use qBittorrent to start downloading the magnet link (ensure seeding is off)
