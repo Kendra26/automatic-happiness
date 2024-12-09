@@ -22,13 +22,3 @@ before_build:
 after_build:
   - echo "Waiting for download to finish..."
   - timeout /t 120  # Adjust this based on download time
-
-# Define artifacts to store the downloaded file
-artifacts:
-  - path: C:\path\to\save\downloaded_file
-    name: downloaded_file
-
-# Notifications
-notifications:
-  email:
-    - example@example.com
