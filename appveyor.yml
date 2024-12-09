@@ -7,7 +7,7 @@ branches:
     - Sera
 
 install:
-  - pip install git+https://github.com/akrennmair/torrentp.git
+  - pip install git+https://github.com/iw4p/torrentp.git
 
 
 before_build:
