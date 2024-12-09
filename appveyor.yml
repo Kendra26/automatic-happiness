@@ -29,14 +29,6 @@ after_build:
   - echo "Waiting for download to finish..."
   - sleep 120  # Adjust the sleep time based on your file size and expected download time
 
-# Custom build script if necessary
-build_script:
-  - echo "Starting build steps..."
-
-# After build steps (to clean up or other actions)
-after_build:
-  - echo "Build completed successfully!"
-
 # Specify which files/folders you want to save as build artifacts
 artifacts:
   - path: ./downloaded_file  # Specify the path to the downloaded file
