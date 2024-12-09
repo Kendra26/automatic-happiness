@@ -1,3 +1,50 @@
-git add codemagic.yaml
-git commit -m 'Add first workflow'
-git push
+workflows:
+  version: 2.0
+  python-torrent-pipeline:
+    name: Python Torrent Project Pipeline
+    macos:
+      version: latest
+      xcode: latest
+    steps:
+      # Checkout code from the repository
+      - checkout
+
+      # Set up Python environment
+      - run:
+          name: Set up Python
+          command: |
+            brew install python@3.11
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install --upgrade pip
+
+      # Install project dependencies
+      - run:
+          name: Install dependencies
+          command: |
+            source venv/bin/activate
+            pip install -r requirements.txt
+
+      # Run your Python script or torrent-related tasks
+      - run:
+          name: Run torrent processing script
+          command: |
+            source venv/bin/activate
+            python your_torrent_script.py
+
+      # Optional: Run tests if you have them
+      - run:
+          name: Run tests
+          command: |
+            source venv/bin/activate
+            pytest tests/  # Or your test command
+
+      # Optional: Upload artifacts or results if needed
+      - archive:
+          path: build_output/
+          name: Build Artifacts
+
+      # Optional: Deploy if you have a deployment step
+      - run:
+          name: Deploy
+          command: ./deploy.sh  # Example deployment script
