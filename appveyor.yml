@@ -1,18 +1,35 @@
 version: 1.0.{build}
 
-image: macos-sonoma  # Use macOS image (if supported)
+image: macos-sonoma  # Use macOS Sonoma image (or the latest available)
 
-# The steps for your build pipeline
+# Environment configuration (Optional)
+environment:
+  PYTHON_VERSION: "3.11"  # You can specify the version you prefer
+
 install:
-  # Install Homebrew if it is not already installed (to install Python)
+  # Install Homebrew if it is not already installed
   - brew update
-  - brew install python
-  - python3 -m venv venv
-  - source venv/bin/activate
-  - pip install --upgrade pip
-  - pip install torrentp  # Install your dependencies (including torrentp)
+  - brew install python  # Ensure Python is installed
+  - python3 -m venv venv  # Create a Python virtual environment
+  - source venv/bin/activate  # Activate the virtual environment
+  - pip install --upgrade pip  # Upgrade pip
+  - pip install torrentp  # Install the 'torrentp' library (ensure it’s in the requirements)
+
+before_build:
+  # Optional: Any pre-build setup (not necessarily needed for basic use)
+  - source venv/bin/activate  # Ensure the virtual environment is activated
 
 build:
-  # Any commands to build or execute your torrentp processing script
-  - source venv/bin/activate
-  - torrentp --link "magnet:?xt=urn:btih:52F190627CAFD84D92444768ACC9F74D3C03C225&dn=Bud Abbott Lou Costello Meet the Killer Boris Karloff (1949)&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969"  # Replace with your actual script
+  # Run your Python script that uses torrentp (replace with your actual script)
+  - source venv/bin/activate  # Ensure the virtual environment is activated
+  - python your_torrent_script.py  # Run your torrent script
+
+# Optional: Running tests (if you have them defined)
+test:
+  - source venv/bin/activate  # Ensure virtualenv is active
+  - pytest tests/  # Example: Running tests using pytest
+
+# Optional: Upload artifacts if needed (such as logs or output)
+artifacts:
+  - path: build_output/
+    name: Build Artifacts
