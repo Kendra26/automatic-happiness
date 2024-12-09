@@ -13,11 +13,6 @@ before_build:
   # Optional: Any pre-build setup (not necessarily needed for basic use)
   - source venv/bin/activate  # Ensure the virtual environment is activated
 
-# Corrected build section
-build:
-  commands:
-    - source venv/bin/activate  # Ensure the virtual environment is activated
-
 # Optional: Running tests (if you have them defined)
 test:
   commands:
