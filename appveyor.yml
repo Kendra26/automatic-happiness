@@ -1,31 +1,48 @@
 version: 1.0.{build}
 
-# Set Ubuntu as the image for the pipeline
-image: Visual Studio 2019  # Or another available Ubuntu version
+image: Visual Studio 2019
 
 # Define which branches to build
 branches:
   only:
     - main
 
+environment:
+  QT_QPA_PLATFORM: minimal
+
 # Install dependencies
 install:
+  - sudo apt update
+  - sudo apt install -y qbittorrent-nox  # Install qBittorrent-nox
 
-  - ps: |
-      # Install cmake and git if not available
-      choco install cmake git -y
-      # Clone libtorrent repository
-      git clone https://github.com/arvidn/libtorrent.git
-      cd libtorrent
-      git checkout v2.0.7
-      # Build libtorrent
-      python setup.py install --user
-  # Update the package list and install necessary dependencies
-  - pip install python-libtorrent
-  - pip install torrentp   # If torrentp is available in APT
-  # Alternatively, if torrentp is a Python package, use pip:
-  # - pip3 install torrentp
+# Example: Start qBittorrent-nox in the background to download the magnet link
+before_build:
+  - echo "Starting qBittorrent-nox in background..."
+  - nohup qbittorrent-nox &  # Start qBittorrent-nox without UI in background
+  - sleep 5  # Wait for qBittorrent to start
+  - echo "Downloading torrent using magnet link..."
+  # Replace the magnet link with your actual magnet link
+  - qbittorrent-nox --add-magnet "magnet:?xt=urn:btih:YOUR_MAGNET_HASH_HERE" --max-upload-rate 0 --seeding-time 0
 
-# Run commands after the repository is cloned (using `cmd` for shell commands)
-# Command to download files via torrent (using torrentp):
-  - cmd: torrentp <your-torrent-file>.torrent  # Replace with your actual torrent file name
+# Wait for download to complete (you may need to adjust this based on your download time)
+after_build:
+  - echo "Waiting for download to finish..."
+  - sleep 120  # Adjust the sleep time based on your file size and expected download time
+
+# Custom build script if necessary
+build_script:
+  - echo "Starting build steps..."
+
+# After build steps (to clean up or other actions)
+after_build:
+  - echo "Build completed successfully!"
+
+# Specify which files/folders you want to save as build artifacts
+artifacts:
+  - path: ./downloaded_file  # Specify the path to the downloaded file
+    name: mydownload
+
+# Notifications (email, for example)
+notifications:
+  email:
+    - example@example.com
