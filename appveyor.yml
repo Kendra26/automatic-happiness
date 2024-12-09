@@ -1,14 +1,29 @@
 version: 1.0.{build}
+image: macos-sonoma
 
-image: macos-sonoma  # Use macOS Sonoma image (or the latest available)
+environment:
+  PYTHON_VERSION: "3.9"  # You can specify the Python version here
+
+before_install:
+  # Install Python (if it's not already pre-installed on macOS image)
+  - brew install python@3.9
+  
+  # Ensure pip is up-to-date
+  - python3 -m ensurepip --upgrade
+  - python3 -m pip install --upgrade pip
+  
+  # Install torrentp library
+  - python3 -m pip install torrentp
 
 install:
-  - cmd: brew update
-  - cmd: brew install python  # Ensure Python is installed
-  - cmd: python3 -m venv venv  # Create a Python virtual environment
-  - cmd: pip install --upgrade pip  # Upgrade pip
-  - cmd: pip install torrentp  # Install the 'torrentp' library (ensure it’s in the requirements)
-# Optional: Upload artifacts if needed (such as logs or output)
+  # Any additional dependencies you may need
+  - brew install libtorrent
+
+script:
+  # Download the torrent using torrentp
+  - python3 -c "import torrentp; torrentp.download('magnet:?xt=urn:btih:52F190627CAFD84D92444768ACC9F74D3C03C225&dn=Bud Abbott Lou Costello Meet the Killer Boris Karloff (1949)&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969', './downloads')"
+
 artifacts:
-  - path: build_output/
-    name: Build Artifacts
+  - path: ./downloads/*.torrent
+    name: downloaded_torrent
+    type: zip
