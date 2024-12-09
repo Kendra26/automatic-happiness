@@ -6,8 +6,7 @@ image: Ubuntu-20.04  # Or another available Ubuntu version
 # Define which branches to build
 branches:
   only:
-    - master
-    - production
+    - main
 
 # Install dependencies
 install:
