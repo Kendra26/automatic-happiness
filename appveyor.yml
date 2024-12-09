@@ -41,8 +41,3 @@ after_build:
 artifacts:
   - path: ./downloaded_file  # Specify the path to the downloaded file
     name: mydownload
-
-# Notifications (email, for example)
-notifications:
-  email:
-    - example@example.com
