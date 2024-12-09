@@ -10,6 +10,16 @@ branches:
 
 # Install dependencies
 install:
+
+  - ps: |
+      # Install cmake and git if not available
+      choco install cmake git -y
+      # Clone libtorrent repository
+      git clone https://github.com/arvidn/libtorrent.git
+      cd libtorrent
+      git checkout v2.0.7
+      # Build libtorrent
+      python setup.py install --user
   # Update the package list and install necessary dependencies
   - pip install python-libtorrent
   - pip install torrentp   # If torrentp is available in APT
