@@ -3,7 +3,8 @@ image: macos-sonoma  # Use macOS Sonoma image (or the latest available)
 
 install:
   - brew update
-  - brew install python  # Ensure Python is installed
+  - brew install python  
+  - brew install libtorrent # Ensure Python is installed
   - python3 -m venv venv  # Create a Python virtual environment
   - source venv/bin/activate  # Activate the virtual environment
   - pip install --upgrade pip  # Upgrade pip
