@@ -7,10 +7,10 @@ branches:
     - Sera
 
 install:
-  - sudo apt update && sudo apt install rtorrent -y 
+  - sudo apt update && sudo apt install freetorrent -y 
 
 before_build:
-  - rtorrent "magnet:?xt=urn:btih:52F190627CAFD84D92444768ACC9F74D3C03C225&dn=Bud Abbott Lou Costello Meet the Killer Boris Karloff (1949)&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969"
+  - freetorrent "magnet:?xt=urn:btih:52F190627CAFD84D92444768ACC9F74D3C03C225&dn=Bud Abbott Lou Costello Meet the Killer Boris Karloff (1949)&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969"
 after_build:
   - echo "Torrent download complete"
 
