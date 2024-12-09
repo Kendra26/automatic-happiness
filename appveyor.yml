@@ -22,6 +22,5 @@ install:
 before_build:
   - echo "Preparing to download file with torrentp"
 
-# Command to download files via torrent (using torrentp)
-build:
-  - torrentp <your-torrent-file>.torrent  # Replace with your actual torrent file name
+# Command to download files via torrent (using torrentp):
+  - cmd: torrentp <your-torrent-file>.torrent  # Replace with your actual torrent file name
