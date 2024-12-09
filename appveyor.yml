@@ -9,8 +9,8 @@ install:
   - pip install --upgrade pip  # Upgrade pip
   - pip install torrentp  # Install the 'torrentp' library
 
-script:
-  - torrentp download "path_to_your_torrent_file.torrent"  # Download the torrent
+before_build:
+  - torrentp download "path_to_your_torrent_file.torrent"  # Use torrentp to download the torrent
 
 artifacts:
   - path: build_output/  # Specify path to store output or logs
