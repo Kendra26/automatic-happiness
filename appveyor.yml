@@ -2,16 +2,11 @@ version: 1.0.{build}
 
 image: macos-sonoma  # Use macOS image (if supported)
 
-# Environment variables to define Python version and other necessary info
-env:
-  matrix:
-    - PYTHON_VERSION: "3.11"
-
 # The steps for your build pipeline
 install:
   # Install Homebrew if it is not already installed (to install Python)
   - brew update
-  - brew install python@$PYTHON_VERSION
+  - brew install python
   - python3 -m venv venv
   - source venv/bin/activate
   - pip install --upgrade pip
