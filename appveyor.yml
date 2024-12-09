@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: macos-sonoma
+image: Ubuntu
 
 environment:
   PYTHON_VERSION: "3.9"  # You can specify the Python version here
@@ -7,8 +7,7 @@ environment:
 install:
   - python3 -m pip install --upgrade pip
   - python3 -m pip install torrentp
-  - brew install python@3.9
-  - brew install libtorrent
+  - apt-get install python@3.9
 
 build:
   # Download the torrent using torrentp
