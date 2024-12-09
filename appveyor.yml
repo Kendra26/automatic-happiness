@@ -1,7 +1,7 @@
 version: 1.0.{build}
 
 # Set Ubuntu as the image for the pipeline
-image: Ubuntu-20.04  # Or another available Ubuntu version
+image: ubuntu-latest  # Or another available Ubuntu version
 
 # Define which branches to build
 branches:
