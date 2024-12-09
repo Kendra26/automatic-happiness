@@ -8,17 +8,6 @@ install:
   - cmd: python3 -m venv venv  # Create a Python virtual environment
   - cmd: pip install --upgrade pip  # Upgrade pip
   - cmd: pip install torrentp  # Install the 'torrentp' library (ensure it’s in the requirements)
-
-before_build:
-  # Optional: Any pre-build setup (not necessarily needed for basic use)
-  - source venv/bin/activate  # Ensure the virtual environment is activated
-
-# Optional: Running tests (if you have them defined)
-test:
-  commands:
-    - source venv/bin/activate  # Ensure virtualenv is active
-    - pytest tests/  # Example: Running tests using pytest
-
 # Optional: Upload artifacts if needed (such as logs or output)
 artifacts:
   - path: build_output/
