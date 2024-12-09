@@ -11,9 +11,9 @@ branches:
 # Install dependencies
 install:
   # Update the package list and install necessary dependencies
-  - sudo apt-get update
+  - apt-get update
   - sudo apt-get install -y python3 python3-pip
-  - sudo apt-get install -y torrentp   # If torrentp is available in APT
+  - pip install torrentp   # If torrentp is available in APT
   # Alternatively, if torrentp is a Python package, use pip:
   # - pip3 install torrentp
 
