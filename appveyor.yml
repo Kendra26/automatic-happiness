@@ -7,10 +7,10 @@ branches:
     - Sera
 
 install:
-  - sudo apt update && sudo apt install ctorrent -y 
+  - sudo apt update && sudo apt install rtorrent -y 
 
 before_build:
-  - ctorrent "magnet:?xt=urn:btih:52F190627CAFD84D92444768ACC9F74D3C03C225&dn=Bud Abbott Lou Costello Meet the Killer Boris Karloff (1949)&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969"
+  - ctorrent "magnet:?xt=urn:btih:EBB2762380EF680226EFF23324FA84647E7FFD7B&tr=udp%3A%2F%2Ftracker.bitsearch.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&dn=%5BBitsearch.to%5D+Lost+In+Alaska+(1952)+%5B1080p%5D+%5BBluRay%5D+%5BYTS.MX%5D"
 after_build:
   - echo "Torrent download complete"
 
