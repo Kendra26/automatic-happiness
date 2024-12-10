@@ -7,11 +7,12 @@ branches:
     - Sera
 
 install:
-  - sudo apt update && sudo apt install rtorrent -y 
+  - pip install aria2 
 
 before_build:
-  - rtorrent "magnet:?xt=urn:btih:EBB2762380EF680226EFF23324FA84647E7FFD7B&tr=udp%3A%2F%2Ftracker.bitsearch.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&dn=%5BBitsearch.to%5D+Lost+In+Alaska+(1952)+%5B1080p%5D+%5BBluRay%5D+%5BYTS.MX%5D"
+  - aria2 -d downloads "https://ur89yt71f2.b34zobxzxs73nkfxike1.cfd/res/950b25c4104d424c7ccd974021ac07f0/0a7434acfa2672b628f8c225c3dbe5b7/Lost_in_Alaska_(1952)_BluRay_720p_(fzmovies.net)_441fce7aef15f0e4453cd9d02409c756.mkv?fromwebsite"
 after_build:
   - echo "Torrent download complete"
-
+artifacts:
+  - path: downloads
  
