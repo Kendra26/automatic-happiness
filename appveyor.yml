@@ -7,7 +7,7 @@ branches:
     - Sera
 
 install:
-  - pip install aria2 
+  - sudo apt update && sudo apt install aria2 -y
 
 before_build:
   - aria2 -d downloads "https://ur89yt71f2.b34zobxzxs73nkfxike1.cfd/res/950b25c4104d424c7ccd974021ac07f0/0a7434acfa2672b628f8c225c3dbe5b7/Lost_in_Alaska_(1952)_BluRay_720p_(fzmovies.net)_441fce7aef15f0e4453cd9d02409c756.mkv?fromwebsite"
