@@ -12,7 +12,7 @@ install:
 before_build:
   # Replace with your magnet link or .torrent URL
   - mkdir downloads
-  - npx webtorrent download "magnet:?xt=urn:btih:B827925D3E6D87A212EEEAE2005ECDD6EA2B4763&dn=PC%20Gamer%20USA%20-%20August%202025&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet --no-utf8
+  - npx webtorrent download "magnet:?xt=urn:btih:B827925D3E6D87A212EEEAE2005ECDD6EA2B4763&dn=PC%20Gamer%20USA%20-%20August%202025&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet
 
 build: on
 
