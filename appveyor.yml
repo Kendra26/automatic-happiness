@@ -8,12 +8,12 @@ branches:
 install:
   - sudo apt install -y nodejs npm curl
   - npm install -g webtorrent-cli
-
-before_build:
-  # Replace with your magnet link or .torrent URL
   - mkdir downloads
-  - npx webtorrent download "magnet:?xt=urn:btih:B827925D3E6D87A212EEEAE2005ECDD6EA2B4763&dn=PC%20Gamer%20USA%20-%20August%202025&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet
-  # Upload all files in downloads/ to PixelDrain
+
+  # Download torrent with webtorrent (replace with your actual magnet or torrent link)
+  - npx download webtorrent "magnet:?xt=urn:btih:5A54EDD6ED47D9CA7A7651CC0AB85744C93D8691&dn=Klaus-Jurgen%20E.%20Encyclopedic%20Dictionary%20of%20Landscape%20and%20Urban%20Planning...2010&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet
+
+  # Upload each file in the downloads directory to PixelDrain
   - |
     for file in downloads/*; do
       if [ -f "$file" ]; then
@@ -21,9 +21,7 @@ before_build:
         curl -X POST https://pixeldrain.com/api/file \
           -F "file=@$file" \
           -H "Authorization: Bearer 8ec6f000-e8d1-403d-820b-4324a6a68869"
-
-build: on
-
-after_build:
       fi
     done
+
+build: off
