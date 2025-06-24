@@ -7,7 +7,7 @@ branches:
 
 
 build_script:
-  - bash: |
+  -: |
       # Setup test files
       mkdir -p files/subfolder
       echo "Root file" > files/root.txt
