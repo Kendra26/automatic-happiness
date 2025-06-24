@@ -1,18 +1,30 @@
 version: 1.0.{build}
 image: Ubuntu
 
-# Define which branches to build
 branches:
   only:
     - Sera
 
 install:
-  - sudo apt update && sudo apt install aria2 -y
+  - sudo apt update
+  - sudo apt install -y aria2 nodejs npm curl
+  - npm install -g webtorrent-cli
 
 before_build:
-  - aria2c -d downloads "https://ur89yt71f2.b34zobxzxs73nkfxike1.cfd/res/950b25c4104d424c7ccd974021ac07f0/0a7434acfa2672b628f8c225c3dbe5b7/Lost_in_Alaska_(1952)_BluRay_720p_(fzmovies.net)_441fce7aef15f0e4453cd9d02409c756.mkv?fromwebsite"
+  # Replace with your magnet link or .torrent URL
+  - mkdir downloads
+  - npx webtorrent download "magnet:?xt=urn:btih:B827925D3E6D87A212EEEAE2005ECDD6EA2B4763&dn=PC%20Gamer%20USA%20-%20August%202025&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet --no-utf8
+
+build: off
+
 after_build:
-  - echo "Torrent download complete"
-artifacts:
-  - path: downloads
- 
+  # Upload all files in downloads/ to PixelDrain
+  - |
+    for file in downloads/*; do
+      if [ -f "$file" ]; then
+        echo "Uploading $file to PixelDrain..."
+        curl -X POST https://pixeldrain.com/api/file \
+          -F "file=@$file" \
+          -H "Authorization: Bearer 8ec6f000-e8d1-403d-820b-4324a6a68869"
+      fi
+    done
