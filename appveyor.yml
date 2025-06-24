@@ -18,7 +18,7 @@ install:
     for file in downloads/*; do
       if [ -f "$file" ]; then
         echo "Uploading $file to PixelDrain..."
-        curl -T "$file" -u :YOUR_PIXELDRAIN_API_KEY_HERE https://pixeldrain.com/api/file/
+        curl -T "$file" -u :8ec6f000-e8d1-403d-820b-4324a6a68869 https://pixeldrain.com/api/file/
       fi
     done
 
