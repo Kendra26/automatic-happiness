@@ -6,8 +6,7 @@ branches:
     - Sera
 
 install:
-  - sudo apt update
-  - sudo apt install -y aria2 nodejs npm curl
+  - sudo apt install -y nodejs npm curl
   - npm install -g webtorrent-cli
 
 before_build:
