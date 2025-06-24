@@ -11,7 +11,7 @@ install:
   - mkdir downloads
 
   # Download torrent with webtorrent (replace with your actual magnet or torrent link)
-  - npx download webtorrent "magnet:?xt=urn:btih:5A54EDD6ED47D9CA7A7651CC0AB85744C93D8691&dn=Klaus-Jurgen%20E.%20Encyclopedic%20Dictionary%20of%20Landscape%20and%20Urban%20Planning...2010&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet
+  - npx webtorrent download "magnet:?xt=urn:btih:5A54EDD6ED47D9CA7A7651CC0AB85744C93D8691&dn=Klaus-Jurgen%20E.%20Encyclopedic%20Dictionary%20of%20Landscape%20and%20Urban%20Planning...2010&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.dler.org:6969/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.demonii.com:1337/announce" --out downloads --quiet
 
   # Upload each file in the downloads directory to PixelDrain
   - |
