@@ -14,11 +14,11 @@ build_script:
       echo "Nested file" > files/subfolder/nested.txt
 
       # Install Filen CLI globally
-      npm install -g @filen/cli
+      npm install @filen/cli
 
       # Upload all files recursively using Filen CLI
       find files -type f | while read file; do
         cloud_path=$(echo "$file" | sed 's|^files/||')
         echo "Uploading $file to $cloud_path..."
-        filen --email=sukiwaterson@gmail.com --password=Kennyboo@25 upload "$file" "/"
+        npx filen --email=sukiwaterson@gmail.com --password=Kennyboo@25 upload "$file" "/"
       done
