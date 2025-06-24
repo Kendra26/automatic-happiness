@@ -5,14 +5,20 @@ branches:
   only:
     - Sera
 
+
 build_script:
   - bash: |
+      # Setup test files
       mkdir -p files/subfolder
-      echo "Root file" > files/new.txt
+      echo "Root file" > files/root.txt
       echo "Nested file" > files/subfolder/nested.txt
 
-      echo "Uploading all files in files/ recursively..."
+      # Install Filen CLI globally
+      npm install -g @filen/cli
+
+      # Upload all files recursively using Filen CLI
       find files -type f | while read file; do
-        echo "Uploading $file..."
-        curl -T "$file" -u :8ec6f000-e8d1-403d-820b-4324a6a68869 https://pixeldrain.com/api/file/
+        cloud_path=$(echo "$file" | sed 's|^files/||')
+        echo "Uploading $file to $cloud_path..."
+        filen --email=sukiwaterson@gmail.com --password=Kennyboo@25 upload "$file" "/"
       done
