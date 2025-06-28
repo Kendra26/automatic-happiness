@@ -1,46 +1,30 @@
-name: Torrent Download
+name: Torrent Download & Upload to Pixeldrain
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  download:
+  torrent-upload:
     runs-on: ubuntu-latest
-
+  # Replace with your actual API key
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Install Deluge
-      run: |
-        sudo apt update
-        sudo apt install -y deluged deluge-web deluge-console
+      - name: Install dependencies
+        run: |
+          npm install -g webtorrent-cli
+          python -m pip install --upgrade pip  # Optional, to ensure pip is up-to-date
+          pip install requests 
 
-    - name: Run Deluge Daemon
-      run: |
-        # Start the Deluge daemon in the background
-        deluged &
-        sleep 10  # Wait for the Deluge daemon to start
+      - name: Download torrent content with webtorrent-cli
+        run: |
+          mkdir downloads
+          webtorrent download "magnet:?xt=urn:btih:6843DB5AAA74F98659CC38F0AC8BA0644995BEE9&dn=Men+In+Black+The+Series+1997+Complete+Seasons+1+to+4+TVRip+x264+%5Bi_c%5D&tr=udp%3A%2F%2Fopentor.org%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta-net.ru%3A2710%2Fannounce&tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce" --out downloads
 
-    - name: Configure No Seed
-      run: |
-        deluge-console config -s seeding_time 0
-        echo "Set seeding_time to 0 to disable seeding."
-
-    - name: Add Torrents
-      run: |
-        # Add the magnet link as needed
-        deluge-console add "magnet:?xt=urn:btih:34F2A1FA5CD593C394C6E5B5B83B92A7165EA9A9&dn=Learn+Python+In+A+Week+And+Master+It&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2810%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce"
-        
-        # If you have .torrent files in the 'torrents' directory
-        for torrent in torrents/*.torrent; do
-          if [ -f "$torrent" ]; then
-            echo "Adding torrent: $torrent"
-            deluge-console add "$torrent"
-          fi
-        done
-
-    - name: Stop Deluge Daemon
-      run: |
-        # Properly stop the Deluge daemon
-        deluge-console quit
+      - name: Run your Python script
+        run: |
+          python justine.py
