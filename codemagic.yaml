@@ -5,8 +5,7 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
-          sudo apt update
-          sudo apt install -y yt-dlp 
+          pip install yt-dlp 
           mkdir -p downloads
 
       - name: Download torrents
